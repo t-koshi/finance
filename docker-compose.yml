@@ -1,0 +1,17 @@
+web:
+  build: .
+  ports:
+    - "3000:3000"
+  command: bundle exec rails s -p 3000 -b '0.0.0.0'
+  volumes:
+    - .:/finance
+  volumes_from:
+    - datastore
+  dns:
+    - 8.8.8.8
+    - 8.8.4.4
+
+datastore:
+  image: finance_web
+  volumes:
+    - /bundle
